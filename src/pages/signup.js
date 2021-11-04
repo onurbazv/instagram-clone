@@ -139,7 +139,7 @@ export default function SignUp() {
                     <div className="flex justify-center items-center flex-col w-full bg-white p-4 border">
                         <p className="text-sm">
                             Have an account? 
-                            <Link to={ROUTES.LOGIN} className="font-semibold text-blue-800"> Log in</Link>
+                            <Link to={ROUTES.LOGIN} className="font-bold text-blue-800"> Log in</Link>
                         </p>
                     </div>
             </div>
