@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import Image from './image'
 import Header from './header'
 import Footer from './footer'
-import Comment from './comment'
+import Comments from './comments'
 import Actions from './actions'
 
 export default function Post({ content }) {
@@ -22,6 +22,12 @@ export default function Post({ content }) {
                 likedPhoto={content.userLikedPhoto}
                 handleFocus={handleFocus} />
             <Footer username={content.username} caption={content.caption} />
+            <Comments
+                docId={content.docId}
+                comments={content.comments}
+                posted={content.dateCreated}
+                commentInput={commentInput}
+             />
         </div>
     )
 }
