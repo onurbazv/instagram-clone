@@ -24,3 +24,32 @@ export const getUserByUserId = async (userId) => {
     
     return user;
 }
+
+
+
+
+export const getUserFollowedPhotos = async (userId, followingUserIds) => {
+    const result = await firebase
+        .firestore()
+        .collection('photos')
+        .where('userId', 'in', followingUserIds)
+        .get();
+        
+    const userFollowedPhotos = result.docs.map((item) => ({
+        ...item.data(),
+        docId: item.id
+    }));
+
+    const photosWithUserDetails = await Promise.all(
+        userFollowedPhotos.map(async (photo) => {
+            const userLikedPhoto = photo.likes.includes(userId)
+
+            const user = await getUserByUserId(photo.userId)
+            const username = user[0].username
+            return { username, ...photo, userLikedPhoto }
+        })
+    )
+    
+
+    return photosWithUserDetails
+}
