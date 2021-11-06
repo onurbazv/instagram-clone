@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import * as ROUTES from './constants/routes'
 import useAuthListener from './hooks/use-auth-listener';

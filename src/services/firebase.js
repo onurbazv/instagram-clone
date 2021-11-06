@@ -53,3 +53,7 @@ export const getUserFollowedPhotos = async (userId, followingUserIds) => {
 
     return photosWithUserDetails
 }
+
+export const getSuggestedProfiles = () => {
+    return null
+}

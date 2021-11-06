@@ -1,6 +1,5 @@
 import React from "react"
-import  Skeleton from "react-loading-skeleton";
-import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from "react-loading-skeleton";
 import useFollowedUsersPhotos from "../hooks/use-followed-users-photos";
 import Post from "./post";
 
@@ -13,7 +12,7 @@ export default function Timeline() {
             {!photos ? (
                 <>
                     {[...new Array(4)].map((_, index) => (
-                        <Skeleton key={index} count={1} width={320} height={400} />
+                        <Skeleton key={index} count={1} height={600}/>
                     ))}
                 </>
             ) : (
