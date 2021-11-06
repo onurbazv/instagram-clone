@@ -14,7 +14,7 @@ export default function Comments({docId, comments: allComments, posted, commentI
                     </p>
                 )}
                 {comments.slice(0, 3).map(item => (
-                    <p key={`${item.posted}-${item.displayName}`} className="mb-1">
+                    <p key={`${Math.floor(Math.random() * 1024) + 1}-${item.displayName}`} className="mb-1">
                         <Link to={`/p/${item.displayName}`}>
                             <span className="font-bold mr-1">{item.displayName}</span>
                         </Link>
