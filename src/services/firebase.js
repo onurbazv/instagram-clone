@@ -25,7 +25,20 @@ export const getUserByUserId = async (userId) => {
     return user;
 }
 
-
+export const getUserByUsername = async (username) => {
+    const result = await firebase
+        .firestore()
+        .collection('users')
+        .where('username', '==', username)
+        .get();
+        
+    const user = result.docs.map((item) => ({
+        ...item.data(),
+        docId: item.id
+    }));
+    
+    return user.length > 0 ? user : false;
+}
 
 
 export const getUserFollowedPhotos = async (userId, followingUserIds) => {
@@ -50,9 +63,24 @@ export const getUserFollowedPhotos = async (userId, followingUserIds) => {
         })
     )
     
-
     return photosWithUserDetails
 }
+
+export const getUserPhotosByUserId = async (userId) => {
+    const result = await firebase
+        .firestore()
+        .collection('photos')
+        .where('userId', '==', userId)
+        .get()
+
+    const userPhotos = result.docs.map(item => ({
+        ...item.data(),
+        docId: item.id
+    }))
+
+    return userPhotos
+}
+
 
 export const getSuggestedProfiles = async (userId, following) => {
     const result = await firebase.firestore().collection('users').limit(10).get()
@@ -91,4 +119,20 @@ export const updateFollowedUserFollowers = async (docId, followingUserId, isFoll
         .update({
             followers: isFollowingProfile ? FieldValue.arrayRemove(followingUserId) : FieldValue.arrayUnion(followingUserId)
         })
+}
+
+export const isUserFollowingProfile = async (activeUsername, profileUserId) => {
+    const result = await firebase
+        .firestore()
+        .collection("users")
+        .where("username", "==", activeUsername)
+        .where("following", "array-contains", profileUserId)
+        .get()
+
+    const [response = {}] = result.docs.map(item => ({
+        ...item.data(),
+        docId: item.id
+    }))
+
+    return !!response.fullName
 }

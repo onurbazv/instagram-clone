@@ -41,7 +41,7 @@ export default function Login() {
             <div className="flex flex-col w-2/5">
                 <div className="flex flex-col items-center bg-white p-4 border mb-4">
                     <h1 className="flex justify-center w-full">
-                        <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 mb-4"/>
+                        <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 mb-4 max-h-full"/>
                     </h1>
 
                     <form onSubmit={handleLogin} method="POST">
