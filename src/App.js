@@ -5,6 +5,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import * as ROUTES from './constants/routes'
 import useAuthListener from './hooks/use-auth-listener';
 import UserContext from './context/user';
+import ProtectedRoute from './helpers/protected-route';
 
 const Dashboard = lazy(() => import ('./pages/dashboard'));
 const Login = lazy(() => import ('./pages/login'));
@@ -24,7 +25,12 @@ export default function App() {
                         <Route path={ROUTES.LOGIN} component={Login}/>
                         <Route path={ROUTES.SIGN_UP} component={SignUp}/>
                         <Route path={ROUTES.PROFILE} component={Profile}/>
-                        <Route path={ROUTES.DASHBOARD} component={Dashboard} exact/>
+                        <ProtectedRoute 
+                            user={user}
+                            redirectPath={ROUTES.LOGIN}
+                            path={ROUTES.DASHBOARD}>
+                            <Dashboard />
+                        </ProtectedRoute>
                         <Route component={NotFound}/>
                     </Switch>
                 </Suspense>

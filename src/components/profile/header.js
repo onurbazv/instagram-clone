@@ -11,7 +11,7 @@ export default function Header({
 }) {
     const { user } = useUser();
     const [isFollowingProfile, setIsFollowingProfile] = useState(false)
-    const activeBtnFollowState = user.username && user.username !== username;
+    const activeBtnFollowState = user && user.username && user.username !== username;
 
     useEffect(() => {
         if (user.following !== undefined) {
