@@ -8,7 +8,7 @@ O projeto foi iniciado com [Create React App](https://github.com/facebook/create
 
 As aulas finalizaram com o projeto faltando alguns requisitos funcionais para ser considerado um produto pronto para produção, estes devem ser trabalhados localmente.
 
-- [ ] Avatar padrão para novos usuários
+- [x] Avatar padrão para novos usuários
 - [ ] Habilidade de criar novos posts
 - [ ] Habilidade de alterar avatar
 - [ ] Habilidade de abrir um post especifíco em um Modal/Popup

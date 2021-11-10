@@ -5,7 +5,7 @@ import UserContext from '../context/user';
 export default function useUser() {
     const [activeUser, setActiveUser] = useState({});
     const { user } = useContext(UserContext);
-    
+    console.log(user)
     useEffect(() => {
         async function getUserObjByUserId() {
             // in here we need to query for the user data in the firestore

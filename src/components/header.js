@@ -9,6 +9,7 @@ export default function Header() {
     const { firebase } = useContext(FirebaseContext)
     const { user } = useUser()
 
+
     return (
         <header className="bg-white h-16 shadow-sm mb-8 px-2">
             <div className="container mx-auto max-w-screen-lg h-full">
@@ -22,7 +23,7 @@ export default function Header() {
                     </div>
                     <div className="text-gray text-center flex items-center align-items gap-4">
                     
-                        {user ? (
+                        {user.username ? (
                             <>
                                 <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
