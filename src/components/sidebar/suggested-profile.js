@@ -6,7 +6,7 @@ import {
     updateFollowedUserFollowers
 } from '../../services/firebase';
 
-export default function SuggestedProfile({ userDocId, username, profileId, userId }) {
+export default function SuggestedProfile({ userDocId, username, profileId, userId, avatar }) {
     const [followed, setFollowed] = useState(false)
 
     async function handleFollowUser() {
@@ -23,7 +23,7 @@ export default function SuggestedProfile({ userDocId, username, profileId, userI
             <div className="flex items-center justify-between">
                 <img 
                     className="rounded-full w-8 mr-3"
-                    src={`/images/avatars/${username}.jpg`}
+                    src={`/images/avatars/${avatar}`}
                     alt={`Follow ${username}`} />
                 <Link to={`/p/${username}`}>
                     <p className="font-bold text-sm">{username}</p>

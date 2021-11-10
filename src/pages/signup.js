@@ -59,6 +59,7 @@ export default function SignUp() {
                 })
                
                 await firebase.firestore().collection('users').add({
+                    avatar: "default.jpg",
                     userId: createdUserResult.user.uid,
                     username: username.toLowerCase(),
                     fullName: fullname,

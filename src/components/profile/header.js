@@ -6,7 +6,7 @@ import { updateFollowedUserFollowers, updateUserFollowing } from '../../services
 export default function Header({
     totalPhotos,
     followerCount,
-    profile  : { docId, userId, username, fullName, following },
+    profile  : { docId, userId, username, fullName, following, avatar },
     dispatch
 }) {
     const { user } = useUser();
@@ -32,7 +32,7 @@ export default function Header({
             <div className="container flex justify-center">
                 <img 
                     className="rounded-full h-40 w-40 flex"
-                    src={`/images/avatars/${username}.jpg`}
+                    src={`/images/avatars/${avatar}`}
                     alt={`${username} avatar`}/>
             </div>
             <div className="flex items-center justify-center flex-col col-span-2">

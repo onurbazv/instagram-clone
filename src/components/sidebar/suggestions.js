@@ -29,6 +29,7 @@ const Suggestions = ({ userId, following }) => {
                         userDocId={profile.docId}
                         username={profile.username}
                         profileId={profile.userId}
+                        avatar={profile.avatar}
                         userId={userId}
                         />
                 ))}

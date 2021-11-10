@@ -14,7 +14,7 @@ export default function Post({ content }) {
     }
     return (
         <div className="mb-8 p-2 rounded col-span-4 border bg-white">
-            <Header username={content.username} />
+            <Header username={content.username} avatar={content.avatar} />
             <Image src={content.imageSrc} caption={content.caption}/>
             <Actions 
                 docId={content.docId}

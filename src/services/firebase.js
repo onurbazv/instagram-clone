@@ -56,10 +56,10 @@ export const getUserFollowedPhotos = async (userId, followingUserIds) => {
     const photosWithUserDetails = await Promise.all(
         userFollowedPhotos.map(async (photo) => {
             const userLikedPhoto = photo.likes.includes(userId)
-
             const user = await getUserByUserId(photo.userId)
             const username = user[0].username
-            return { username, ...photo, userLikedPhoto }
+            const avatar = user[0].avatar
+            return { username, ...photo, userLikedPhoto, avatar }
         })
     )
     

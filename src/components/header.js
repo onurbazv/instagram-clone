@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"
 
 import * as ROUTES from '../constants/routes'
 import FirebaseContext from '../context/firebase'
-import UserContext from "../context/user"
+import useUser from "../hooks/use-user"
 
 export default function Header() {
     const { firebase } = useContext(FirebaseContext)
-    const { user } = useContext(UserContext)
+    const { user } = useUser()
 
     return (
         <header className="bg-white h-16 shadow-sm mb-8 px-2">
@@ -41,11 +41,11 @@ export default function Header() {
                                     </svg>
                                 </button>
                                 <div className="flex items-center cursor-pointer">
-                                    <Link to={`/p/${user.displayName}`}>
+                                    <Link to={`/p/${user.username}`}>
                                         <img 
                                             className="rounded-full w-8 h-8 flex"
-                                            src={`/images/avatars/${user.displayName}.jpg`}
-                                            alt={`${user.displayName} avatar`}/>
+                                            src={`/images/avatars/${user.avatar}`}
+                                            alt={`${user.username} avatar`}/>
                                     </Link>
                                 </div>
                             </>
