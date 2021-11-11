@@ -12,6 +12,7 @@ const Login = lazy(() => import ('./pages/login'));
 const SignUp = lazy(() => import ('./pages/signup'));
 const Profile = lazy(() => import ('./pages/profile'));
 const NotFound = lazy(() => import ('./pages/not-found'));
+const Teste = lazy(() => import ('./pages/teste'));
 
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
                         <Route path={ROUTES.LOGIN} component={Login}/>
                         <Route path={ROUTES.SIGN_UP} component={SignUp}/>
                         <Route path={ROUTES.PROFILE} component={Profile}/>
+                        <Route path={ROUTES.TEST} component={Teste}/>
                         <ProtectedRoute 
                             user={user}
                             redirectPath={ROUTES.LOGIN}

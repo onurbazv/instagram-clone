@@ -8,7 +8,8 @@ const config = {
   };
 
 const firebase = window.firebase.initializeApp(config)
+const storage = firebase.storage()
 const { FieldValue } = window.firebase.firestore
 
 
-export { firebase, FieldValue }
+export { firebase, FieldValue, storage }

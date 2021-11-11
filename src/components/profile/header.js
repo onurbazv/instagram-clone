@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import useUser from "../../hooks/use-user"
 import Skeleton from "react-loading-skeleton"
 import { updateFollowedUserFollowers, updateUserFollowing } from '../../services/firebase';
+import UserContext from '../../context/user';
+import Modal from '../modal';
 
 export default function Header({
     totalPhotos,
@@ -10,8 +12,11 @@ export default function Header({
     dispatch
 }) {
     const { user } = useUser();
+    const { user: loggedInUser } = useContext(UserContext)
     const [isFollowingProfile, setIsFollowingProfile] = useState(false)
-    const activeBtnFollowState = user && user.username && user.username !== username;
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const isUserProfile = user.username === username
+    const activeBtnFollowState = user && user.username && !isUserProfile && loggedInUser !== null;
 
     useEffect(() => {
         if (user.following !== undefined) {
@@ -31,9 +36,10 @@ export default function Header({
         <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
             <div className="container flex justify-center">
                 <img 
-                    className="rounded-full h-40 w-40 flex"
+                    className={`rounded-full h-40 w-40 flex ${isUserProfile && "cursor-pointer"}`}
                     src={`/images/avatars/${avatar}`}
-                    alt={`${username} avatar`}/>
+                    alt={`${username} avatar`}
+                    onClick={isUserProfile ?  () => setIsModalOpen(true) : null}/>
             </div>
             <div className="flex items-center justify-center flex-col col-span-2">
                 <div className="container flex items-center">
@@ -47,6 +53,7 @@ export default function Header({
                             {isFollowingProfile ? "Unfollow" : "Follow"}
                         </button>
                     )}
+
                 </div>
                 <div className="container flex mt-4">
                     {followerCount === undefined || following === undefined ? (
@@ -73,6 +80,12 @@ export default function Header({
                     )}
                 </div>
             </div>
+            <Modal 
+                open={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                title="Upload Avatar">
+                    <p>Tailwind CSS is the only framework that I've seen scale on large teams. It’s easy to customize, adapts to any design, and the build size is tiny.</p>
+            </Modal>
         </div>
     )
 }

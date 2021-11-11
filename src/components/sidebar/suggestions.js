@@ -6,7 +6,6 @@ import { getSuggestedProfiles } from '../../services/firebase';
 const Suggestions = ({ userId, following }) => {
     const [profiles, setProfiles] = useState(null);
     
-    
     useEffect(() => {
         async function suggestedProfiles() {
             const response = await getSuggestedProfiles(userId, following);
