@@ -20,4 +20,4 @@ Após estas funcionalidades serem implementadas, para que o projeto seja conside
 
 Estes são os bugs que foram encontrados e ainda precisam ser corrigidos
 
-- [X] O botão de follow / unfollow persiste na página após o usuário apertar o botão de sign out. Isso não deve ser possivel porque não temos nenhum usuário logado.
+- [x] O botão de follow / unfollow persiste na página após o usuário apertar o botão de sign out. Isso não deve ser possivel porque não temos nenhum usuário logado.

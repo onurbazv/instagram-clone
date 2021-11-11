@@ -4,6 +4,7 @@ import Skeleton from "react-loading-skeleton"
 import { updateFollowedUserFollowers, updateUserFollowing } from '../../services/firebase';
 import UserContext from '../../context/user';
 import Modal from '../modal';
+import AvatarUploader from './avatar-uploader'
 
 export default function Header({
     totalPhotos,
@@ -84,7 +85,12 @@ export default function Header({
                 open={isModalOpen} 
                 onClose={() => setIsModalOpen(false)} 
                 title="Upload Avatar">
-                    <p>Tailwind CSS is the only framework that I've seen scale on large teams. It’s easy to customize, adapts to any design, and the build size is tiny.</p>
+                    
+                    
+                    <AvatarUploader />
+
+
+
             </Modal>
         </div>
     )

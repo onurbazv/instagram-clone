@@ -1,4 +1,4 @@
-import { FieldValue, firebase, storage } from '../lib/firebase'
+import { FieldValue, firebase, storageRef } from '../lib/firebase'
 
 export const doesUsernameExist = async (username) => {
     const result = await firebase
@@ -135,4 +135,24 @@ export const isUserFollowingProfile = async (activeUsername, profileUserId) => {
     }))
 
     return !!response.fullName
+}
+
+
+export const uploadFile = async (file, path, recalculateProgress) => {
+    const uploadTask = storageRef.child(path).put(file)
+    uploadTask.on('state_changed', (snapshot) => {
+        recalculateProgress(snapshot.bytesTransferred, snapshot.totalBytes)
+    }, (error) => {
+        console.log(error)
+    }, () => {
+        console.log('Upload successful')
+    })
+}
+
+export const getFileUrl = async (path) => {
+    let result;
+    await storageRef.child(path).getDownloadURL().then(url => {
+        result = url;
+    })
+    return result;
 }
