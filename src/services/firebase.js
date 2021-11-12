@@ -85,20 +85,19 @@ export const getUserPhotosByUserId = async (userId) => {
 export const getSuggestedProfiles = async (userId, following) => {
     const result = await firebase.firestore().collection('users').limit(10).get()
 
-    // Karl used this code on his project, I've decided to pass userFollowing as a prop from sidebar (useUser) to avoid this
-    // const [{ following = [] }] = result.docs
-    //     .map((user) => user.data())
-    //     .filter((profile) => profile.userId === userId);
-
-    // He then introduced this  `optimized` solution in the next screencast
-    // const [{ following }] = await getUserByUserId(userId);
-
-    // I question the optimization because it makes more calls to the backend where we can just use data we already have somewhere else in the app
-    // This is why i chose to continue drilling props
-
     return result.docs
         .map((user) => ({ ...user.data(), docId: user.id }))
         .filter((profile) => profile.userId !== userId && !following.includes(profile.userId));
+}
+
+
+export const getProfileList = async (list) => {
+    const result = await firebase.firestore().collection('users').limit(10).get()
+
+    return result.docs.map(user => ({
+        ...user.data(),
+        docId: user.id
+    })).filter(profile => list.includes(profile.userId))
 }
 
 export const updateUserFollowing = async (docId, profileId, isFollowingProfile)  => {
@@ -171,20 +170,3 @@ export const updateUserAvatar = async (docId, url) => {
             avatar: url
         })
 }
-
-
-// used to change avatar of every user in collection
-// export const updateCurrentUsers = async () => {
-//     const result = await firebase.firestore().collection('users').get()
-
-//     const users = result.docs.map(item => ({
-//         ...item.data(),
-//         docId: item.id
-//     }))
-
-//     users.forEach(async user => {
-//         const url = await getFileUrl(`images/avatars/${user.username !== "newaccount" ? user.username : "default"}.jpg`)
-//         console.log(url)
-//         await updateUserAvatar(user.docId, url)
-//     })
-// }

@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import * as SETTINGS from '../../constants/settings'
-import { uploadFile } from '../../services/firebase'
-import randomString from '../../helpers/random-string'
+import * as SETTINGS from '../constants/settings'
+import { uploadFile } from '../services/firebase'
+import randomString from '../helpers/random-string'
 
-export default function AvatarUploader({basePath, onSuccess}) {
+export default function Uploader({basePath, onSuccess}) {
     const [uploadProgress, setUploadProgress] = useState(0)
 
     const recalculateProgress = (current, total) => {

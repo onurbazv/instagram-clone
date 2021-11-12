@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from 'react'
 import useUser from "../../hooks/use-user"
-import Skeleton from "react-loading-skeleton"
-import { updateFollowedUserFollowers, updateUserFollowing, updateUserAvatar } from '../../services/firebase';
 import UserContext from '../../context/user';
+import { updateFollowedUserFollowers, updateUserFollowing, updateUserAvatar } from '../../services/firebase';
+import Skeleton from "react-loading-skeleton"
 import Modal from '../modal';
-import AvatarUploader from './avatar-uploader'
+import Uploader from '../uploader'
+import FollowList from './follow-list'
 
 export default function Header({
     totalPhotos,
@@ -16,6 +17,7 @@ export default function Header({
     const { user: loggedInUser } = useContext(UserContext)
     const [isFollowingProfile, setIsFollowingProfile] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [modal, setModal] = useState({title: "", intent: ""})
     const isUserProfile = user.username === username
     const activeBtnFollowState = user && user.username && !isUserProfile && loggedInUser !== null;
 
@@ -56,7 +58,10 @@ export default function Header({
                     className={`rounded-full h-40 w-40 flex ${isUserProfile && "cursor-pointer"} object-cover`}
                     src={avatar}
                     alt={`${username} avatar`}
-                    onClick={isUserProfile ?  () => setIsModalOpen(true) : null}/>
+                    onClick={isUserProfile ?  () => {
+                        setIsModalOpen(true)
+                        setModal({title: "Change Avatar", intent: "change_avatar"})
+                    } : null}/>
             </div>
             <div className="flex items-center justify-center flex-col col-span-2">
                 <div className="container flex items-center">
@@ -80,10 +85,16 @@ export default function Header({
                             <p className="mr-10">
                                 <span className="font-bold">{totalPhotos}</span> photos
                             </p>
-                            <p className="mr-10">
+                            <p className="mr-10" onClick={() => {
+                                setIsModalOpen(true)
+                                setModal({title: `Users following ${username}`, intent: "follower_list"})
+                            }}>
                                 <span className="font-bold">{followerCount}</span> {followerCount === 1 ? "follower" : "followers"}
                             </p>
-                            <p className="mr-10">
+                            <p className="mr-10" onClick={() => {
+                                setIsModalOpen(true)
+                                setModal({title: `Users ${username} follows`, intent: "following_list"})
+                            }}>
                                 <span className="font-bold">{following.length}</span> following
                             </p>
                         </>
@@ -100,9 +111,11 @@ export default function Header({
             <Modal 
                 open={isModalOpen} 
                 onClose={() => setIsModalOpen(false)} 
-                title="Change Profile Picture">
+                title={modal.title}>
                 
-                    <AvatarUploader basePath="images/avatars/" onSuccess={handleUploadAvatar}/>
+                    {modal.intent === "change_avatar" && <Uploader basePath="images/avatars/" onSuccess={handleUploadAvatar}/>}
+                    {modal.intent === "following_list" && <FollowList list={following} userId={user.userId} followingList={user.following}/>}
+                    {modal.intent === "follower_list" && <FollowList list={followers} userId={user.userId} followingList={user.following}/>}
 
             </Modal>
         </div>
