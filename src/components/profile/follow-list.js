@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { getProfileList } from '../../services/firebase'
 import FollowProfile from './follow-profile'
 
-function FollowList({list, userId, followingList}) {
+function FollowList({list, userId, followingList, closeModal}) {
     const [profiles, setProfiles] = useState(null)
     console.log(profiles)
     useEffect(() => {
@@ -27,7 +27,8 @@ function FollowList({list, userId, followingList}) {
                         profileId={profile.userId}
                         avatar={profile.avatar}
                         userId={userId}
-                        followedState={userId === profile.userId ? null : followingList.includes(profile.userId)}/>
+                        followedState={userId === profile.userId ? null : followingList.includes(profile.userId)}
+                        closeModal={closeModal}/>
                 ))
             )}
         </div>

@@ -10,7 +10,7 @@ export default function Dashboard() {
     }, [])
 
     return (
-        <div className="bg-gray-100 h-screen">
+        <div className="min-h-screen">
             <Header/>
             <div className="grid grid-cols-3 gap-4 max-w-screen-lg mx-auto justify-between px-2">
                 <Timeline />

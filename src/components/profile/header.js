@@ -85,16 +85,16 @@ export default function Header({
                             <p className="mr-10">
                                 <span className="font-bold">{totalPhotos}</span> photos
                             </p>
-                            <p className="mr-10" onClick={() => {
+                            <p className="mr-10" onClick={followers.length > 0 ? () => {
                                 setIsModalOpen(true)
                                 setModal({title: `Users following ${username}`, intent: "follower_list"})
-                            }}>
+                            } : null}>
                                 <span className="font-bold">{followerCount}</span> {followerCount === 1 ? "follower" : "followers"}
                             </p>
-                            <p className="mr-10" onClick={() => {
+                            <p className="mr-10" onClick={following.length > 0 ? () => {
                                 setIsModalOpen(true)
                                 setModal({title: `Users ${username} follows`, intent: "following_list"})
-                            }}>
+                            }: null}>
                                 <span className="font-bold">{following.length}</span> following
                             </p>
                         </>
@@ -114,8 +114,8 @@ export default function Header({
                 title={modal.title}>
                 
                     {modal.intent === "change_avatar" && <Uploader basePath="images/avatars/" onSuccess={handleUploadAvatar}/>}
-                    {modal.intent === "following_list" && <FollowList list={following} userId={user.userId} followingList={user.following}/>}
-                    {modal.intent === "follower_list" && <FollowList list={followers} userId={user.userId} followingList={user.following}/>}
+                    {modal.intent === "following_list" && <FollowList list={following} userId={user.userId} followingList={user.following} closeModal={() => setIsModalOpen(false)}/>}
+                    {modal.intent === "follower_list" && <FollowList list={followers} userId={user.userId} followingList={user.following} closeModal={() => setIsModalOpen(false)}/>}
 
             </Modal>
         </div>

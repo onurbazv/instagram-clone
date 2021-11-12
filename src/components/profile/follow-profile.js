@@ -6,7 +6,7 @@ import {
     updateFollowedUserFollowers
 } from '../../services/firebase';
 
-export default function FollowProfile({userDocId, username, profileId, userId, avatar, followedState }) {
+export default function FollowProfile({userDocId, username, profileId, userId, avatar, followedState, closeModal}) {
     const [followed, setFollowed] = useState(followedState)
 
     async function handleFollowUser() {
@@ -30,7 +30,7 @@ export default function FollowProfile({userDocId, username, profileId, userId, a
                     className="rounded-full w-8 h-8 mr-3 object-cover"
                     src={avatar}
                     alt={`Follow ${username}`} />
-                <Link to={`/p/${username}`}>
+                <Link to={`/p/${username}`} onClick={closeModal}>
                     <p className="font-bold text-sm">{username}</p>
                 </Link>
             </div>
