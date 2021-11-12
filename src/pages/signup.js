@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import FirebaseContext from '../context/firebase'
 import * as ROUTES from '../constants/routes'
+import * as SETTINGS from '../constants/settings'
 import { doesUsernameExist } from '../services/firebase'
 
 
@@ -59,7 +60,7 @@ export default function SignUp() {
                 })
                
                 await firebase.firestore().collection('users').add({
-                    avatar: "default.jpg",
+                    avatar: SETTINGS.DEFAULT_AVATAR_URL,
                     userId: createdUserResult.user.uid,
                     username: username.toLowerCase(),
                     fullName: fullname,

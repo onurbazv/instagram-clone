@@ -22,7 +22,7 @@ export default function SuggestedProfile({ userDocId, username, profileId, userI
         <div className="flex flex-row items-center align-items justify-between">
             <div className="flex items-center justify-between">
                 <img 
-                    className="rounded-full w-8 mr-3"
+                    className="rounded-full w-8 h-8 mr-3 object-cover"
                     src={avatar}
                     alt={`Follow ${username}`} />
                 <Link to={`/p/${username}`}>

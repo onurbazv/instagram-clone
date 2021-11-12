@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import * as SETTINGS from '../../constants/settings'
-import { uploadFile, updateCurrentUsers } from '../../services/firebase'
-
+import { uploadFile } from '../../services/firebase'
+import randomString from '../../helpers/random-string'
 
 export default function AvatarUploader({basePath, onSuccess}) {
     const [uploadProgress, setUploadProgress] = useState(0)
@@ -13,7 +13,8 @@ export default function AvatarUploader({basePath, onSuccess}) {
     const onChangeHandler = async event => {
         const selectedFile = event.target.files[0]
         if (SETTINGS.ALLOWED_FILETYPES.includes(selectedFile.type) && SETTINGS.MAX_FILESIZE >= selectedFile.size) {
-            const file = new File([selectedFile], selectedFile.name, {type: selectedFile.type})
+            const ext = `.${selectedFile.name.split('.')[selectedFile.name.split('.').length - 1]}`
+            const file = new File([selectedFile], `${randomString(32)}${ext}`, {type: selectedFile.type})
             await uploadFile(file, `${basePath}${file.name}`, recalculateProgress, onSuccess)
         } else {
             console.log("Make sure you're uploading an image with size < 1mb.")
@@ -25,7 +26,7 @@ export default function AvatarUploader({basePath, onSuccess}) {
     return (
         <div>
             <label
-                className="w-64 flex flex-col items-center px-4 py-6 bg-white rounded-md shadow-md tracking-wide uppercase 
+                className="w-64 flex flex-col items-center px-4 py-6 mx-auto bg-white rounded-md shadow-md tracking-wide uppercase 
                 border border-blue cursor-pointer hover:bg-blue-600 hover:text-white text-blue-600 ease-linear transition-all duration-150">
                 <i className="fas fa-cloud-upload-alt fa-3x"></i>
                 <span className="mt-2 text-base leading-normal">Select a file</span>
@@ -39,9 +40,6 @@ export default function AvatarUploader({basePath, onSuccess}) {
                     </div>
                 </div>
             </div>}
-            <div className="mt-4 bg-red-300" onClick={updateCurrentUsers}>
-                CLICK ME FOR TEST
-            </div>
         </div>
     )
 }

@@ -9,15 +9,19 @@ O projeto foi iniciado com [Create React App](https://github.com/facebook/create
 As aulas finalizaram com o projeto faltando alguns requisitos funcionais para ser considerado um produto pronto para produção, estes devem ser trabalhados localmente.
 
 - [x] Avatar padrão para novos usuários
+- [ ] Migração local para firebase storage
 - [ ] Habilidade de criar novos posts
-- [ ] Habilidade de alterar avatar
+- [x] Habilidade de alterar avatar
 - [ ] Habilidade de abrir um post especifíco em um Modal/Popup
 - [ ] Habilidade de ver listas de followers / followings em um Modal/Popup
 
-Após estas funcionalidades serem implementadas, para que o projeto seja considerado realmente em modo de produção só faltará migrar os arquivos estaticos (imagens) para o serviço storage do firebase.
+
 
 ## Bugs
 
 Estes são os bugs que foram encontrados e ainda precisam ser corrigidos
 
 - [x] O botão de follow / unfollow persiste na página após o usuário apertar o botão de sign out. Isso não deve ser possivel porque não temos nenhum usuário logado.
+- [x] O perfil do usuário não atualiza a imagem após o upload, só depois de um reload na página que o usuário consegue ver a mudança. Descobrir como fazer a mudança ocorrer sem necessidade de F5.
+- [ ] O header não atualiza a imagem do usuário após alteração de avatar.
+- [ ] Background meio bugado em alguns lugares, descobrir o que está causando isso no CSS

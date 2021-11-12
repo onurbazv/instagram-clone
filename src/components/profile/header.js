@@ -9,7 +9,7 @@ import AvatarUploader from './avatar-uploader'
 export default function Header({
     totalPhotos,
     followerCount,
-    profile  : { docId, userId, username, fullName, following, avatar },
+    profile  : { docId, userId, username, fullName, following, avatar, followers, emailAddress, dateCreated },
     dispatch
 }) {
     const { user } = useUser();
@@ -35,14 +35,26 @@ export default function Header({
 
     const handleUploadAvatar = async (url) => {
         updateUserAvatar(user.docId, url)
+        dispatch({profile: {
+            docId,
+            userId,
+            username,
+            fullName,
+            following,
+            followers,
+            emailAddress,
+            dateCreated,
+            avatar: url,
+        }})
+        setIsModalOpen(false)
     }
 
     return (
         <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
             <div className="container flex justify-center">
                 <img 
-                    className={`rounded-full h-40 w-40 flex ${isUserProfile && "cursor-pointer"}`}
-                    src={`/images/avatars/${avatar}`}
+                    className={`rounded-full h-40 w-40 flex ${isUserProfile && "cursor-pointer"} object-cover`}
+                    src={avatar}
                     alt={`${username} avatar`}
                     onClick={isUserProfile ?  () => setIsModalOpen(true) : null}/>
             </div>
@@ -88,12 +100,9 @@ export default function Header({
             <Modal 
                 open={isModalOpen} 
                 onClose={() => setIsModalOpen(false)} 
-                title="Upload Avatar">
-                    
-                    
+                title="Change Profile Picture">
+                
                     <AvatarUploader basePath="images/avatars/" onSuccess={handleUploadAvatar}/>
-
-
 
             </Modal>
         </div>

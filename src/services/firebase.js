@@ -138,6 +138,8 @@ export const isUserFollowingProfile = async (activeUsername, profileUserId) => {
 }
 
 export const uploadFile = async (file, path, recalculateProgress, onSuccess) => {
+
+    
     const uploadTask = storageRef.child(path).put(file)
     uploadTask.on('state_changed', (snapshot) => {
         recalculateProgress(snapshot.bytesTransferred, snapshot.totalBytes)
@@ -171,17 +173,18 @@ export const updateUserAvatar = async (docId, url) => {
 }
 
 
-export const updateCurrentUsers = async () => {
-    const result = await firebase.firestore().collection('users').get()
+// used to change avatar of every user in collection
+// export const updateCurrentUsers = async () => {
+//     const result = await firebase.firestore().collection('users').get()
 
-    const users = result.docs.map(item => ({
-        ...item.data(),
-        docId: item.id
-    }))
+//     const users = result.docs.map(item => ({
+//         ...item.data(),
+//         docId: item.id
+//     }))
 
-    users.forEach(async user => {
-        const url = await getFileUrl(`images/avatars/${user.username !== "newaccount" ? user.username : "default"}.jpg`)
-        console.log(url)
-        await updateUserAvatar(user.docId, url)
-    })
-}
+//     users.forEach(async user => {
+//         const url = await getFileUrl(`images/avatars/${user.username !== "newaccount" ? user.username : "default"}.jpg`)
+//         console.log(url)
+//         await updateUserAvatar(user.docId, url)
+//     })
+// }
