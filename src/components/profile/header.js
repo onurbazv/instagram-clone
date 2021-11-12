@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import useUser from "../../hooks/use-user"
 import Skeleton from "react-loading-skeleton"
-import { updateFollowedUserFollowers, updateUserFollowing } from '../../services/firebase';
+import { updateFollowedUserFollowers, updateUserFollowing, updateUserAvatar } from '../../services/firebase';
 import UserContext from '../../context/user';
 import Modal from '../modal';
 import AvatarUploader from './avatar-uploader'
@@ -31,6 +31,10 @@ export default function Header({
         dispatch({followerCount: isFollowingProfile ? followerCount - 1 : followerCount + 1})
         updateUserFollowing(user.docId, userId, isFollowingProfile)
         updateFollowedUserFollowers(docId, user.userId, isFollowingProfile)
+    }
+
+    const handleUploadAvatar = async (url) => {
+        updateUserAvatar(user.docId, url)
     }
 
     return (
@@ -87,7 +91,7 @@ export default function Header({
                 title="Upload Avatar">
                     
                     
-                    <AvatarUploader />
+                    <AvatarUploader basePath="images/avatars/" onSuccess={handleUploadAvatar}/>
 
 
 

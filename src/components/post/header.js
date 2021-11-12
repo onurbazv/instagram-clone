@@ -7,7 +7,7 @@ export default function Header({ username, avatar }) {
                 <Link to={`/p/${username}`} className="flex items-center">
                     <img 
                         className="rounded-full h-8 w-8 flex mr-3"
-                        src={`/images/avatars/${avatar}`}
+                        src={avatar}
                         alt={`${username} avatar`}
                     />
                     <p className="font-bold">{username}</p>

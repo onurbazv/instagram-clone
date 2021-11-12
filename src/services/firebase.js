@@ -137,15 +137,18 @@ export const isUserFollowingProfile = async (activeUsername, profileUserId) => {
     return !!response.fullName
 }
 
-
-export const uploadFile = async (file, path, recalculateProgress) => {
+export const uploadFile = async (file, path, recalculateProgress, onSuccess) => {
     const uploadTask = storageRef.child(path).put(file)
     uploadTask.on('state_changed', (snapshot) => {
         recalculateProgress(snapshot.bytesTransferred, snapshot.totalBytes)
     }, (error) => {
         console.log(error)
-    }, () => {
-        console.log('Upload successful')
+    }, async () => {
+        const url = await getFileUrl(path)
+        if (path !== undefined && path !== null) {
+            console.log(url)
+            onSuccess(url)
+        }
     })
 }
 
@@ -155,4 +158,30 @@ export const getFileUrl = async (path) => {
         result = url;
     })
     return result;
+}
+
+export const updateUserAvatar = async (docId, url) => {
+    return await firebase
+        .firestore()
+        .collection("users")
+        .doc(docId)
+        .update({
+            avatar: url
+        })
+}
+
+
+export const updateCurrentUsers = async () => {
+    const result = await firebase.firestore().collection('users').get()
+
+    const users = result.docs.map(item => ({
+        ...item.data(),
+        docId: item.id
+    }))
+
+    users.forEach(async user => {
+        const url = await getFileUrl(`images/avatars/${user.username !== "newaccount" ? user.username : "default"}.jpg`)
+        console.log(url)
+        await updateUserAvatar(user.docId, url)
+    })
 }

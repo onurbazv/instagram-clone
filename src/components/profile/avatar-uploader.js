@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import * as SETTINGS from '../../constants/settings'
-import { getFileUrl, uploadFile } from '../../services/firebase'
+import { uploadFile, updateCurrentUsers } from '../../services/firebase'
 
 
-export default function AvatarUploader() {
-    const [uploadProgress, setUploadProgress] = useState(0)  
+export default function AvatarUploader({basePath, onSuccess}) {
+    const [uploadProgress, setUploadProgress] = useState(0)
 
     const recalculateProgress = (current, total) => {
         setUploadProgress((current / total) * 100)
@@ -14,8 +14,7 @@ export default function AvatarUploader() {
         const selectedFile = event.target.files[0]
         if (SETTINGS.ALLOWED_FILETYPES.includes(selectedFile.type) && SETTINGS.MAX_FILESIZE >= selectedFile.size) {
             const file = new File([selectedFile], selectedFile.name, {type: selectedFile.type})
-            const result = await uploadFile(file, `images/${file.name}`, recalculateProgress)
-            console.log(result)
+            await uploadFile(file, `${basePath}${file.name}`, recalculateProgress, onSuccess)
         } else {
             console.log("Make sure you're uploading an image with size < 1mb.")
         }
@@ -32,19 +31,16 @@ export default function AvatarUploader() {
                 <span className="mt-2 text-base leading-normal">Select a file</span>
                 <input type="file" className="hidden" onChange={onChangeHandler} multiple={false}/>
             </label>
-            <div className="mt-4 relative pt-1">
+            {uploadProgress !== 0 && <div className="mt-4 relative pt-1">
                 <div className="overflow-hidden h-2 text-xs flex rounded bg-purple-200">
                     <div
                         style={{width: `${uploadProgress}%`}}
                         className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600">
                     </div>
                 </div>
-            </div>
-            <div className="mt-4 relative pt-1">
-                <p onClick={async () => {
-                    const url = await getFileUrl('images/balroghere.png')
-                    console.log(url)
-                }}>Test</p>
+            </div>}
+            <div className="mt-4 bg-red-300" onClick={updateCurrentUsers}>
+                CLICK ME FOR TEST
             </div>
         </div>
     )
