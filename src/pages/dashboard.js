@@ -12,7 +12,7 @@ export default function Dashboard() {
     return (
         <div className="min-h-screen">
             <Header/>
-            <div className="grid grid-cols-3 gap-4 max-w-screen-lg mx-auto justify-between px-2">
+            <div className="flex flex-col sm:grid sm:grid-cols-3 gap-4 max-w-screen sm:max-w-screen-lg mx-auto justify-between px-2">
                 <Timeline />
                 <Sidebar />
             </div>

@@ -52,10 +52,10 @@ export default function Header({
     }
 
     return (
-        <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
-            <div className="container flex justify-center">
+        <div className="flex sm:grid sm:grid-cols-3 gap-4 sm:justify-between mx-auto sm:max-w-screen-lg items-center">
+            <div className="container flex justify-center w-max sm:justify-self-end sm:mr-10">
                 <img 
-                    className={`rounded-full h-40 w-40 flex ${isUserProfile && "cursor-pointer"} object-cover`}
+                    className={`rounded-full h-28 w-28 sm:h-40 sm:w-40 flex ${isUserProfile && "cursor-pointer"} object-cover`}
                     src={avatar}
                     alt={`${username} avatar`}
                     onClick={isUserProfile ?  () => {
@@ -63,8 +63,8 @@ export default function Header({
                         setModal({title: "Change Avatar", intent: "change_avatar"})
                     } : null}/>
             </div>
-            <div className="flex items-center justify-center flex-col col-span-2">
-                <div className="container flex items-center">
+            <div className="flex items-center justify-center flex-col sm:col-span-2">
+                <div className="container flex items-center order-0">
                     <p className="text-2xl mr-4">{username}</p>
                     {activeBtnFollowState && (
                         <button
@@ -77,21 +77,21 @@ export default function Header({
                     )}
 
                 </div>
-                <div className="container flex mt-4">
+                <div className="container flex flex-col sm:flex-row mt-2 sm:mt-4 order-2 sm:order-none">
                     {followerCount === undefined || following === undefined ? (
                         <Skeleton width={256} height={24}/>
                     ) : (
                         <>
-                            <p className="mr-10">
+                            <p className="sm:mr-10">
                                 <span className="font-bold">{totalPhotos}</span> photos
                             </p>
-                            <p className="mr-10" onClick={followers.length > 0 ? () => {
+                            <p className="sm:mr-10" onClick={followers.length > 0 ? () => {
                                 setIsModalOpen(true)
                                 setModal({title: `Users following ${username}`, intent: "follower_list"})
                             } : null}>
                                 <span className="font-bold">{followerCount}</span> {followerCount === 1 ? "follower" : "followers"}
                             </p>
-                            <p className="mr-10" onClick={following.length > 0 ? () => {
+                            <p className="sm:mr-10" onClick={following.length > 0 ? () => {
                                 setIsModalOpen(true)
                                 setModal({title: `Users ${username} follows`, intent: "following_list"})
                             }: null}>
@@ -100,7 +100,7 @@ export default function Header({
                         </>
                     )}
                 </div>
-                <div className="container flex mt-4">
+                <div className="container flex mt-4 order-1 sm:order-none">
                     {!fullName || fullName === undefined ? (
                         <Skeleton width={256} height={24} />
                     ) : (

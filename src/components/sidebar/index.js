@@ -9,7 +9,7 @@ export default function Sidebar() {
     const { user: { userId, username, fullName, following, avatar } = {} } = useUser();
 
     return (
-        <div className="p-4">
+        <div className="container p-4 order-first sm:order-last">
             <User fullName={fullName} username={username} avatar={avatar}/>
             <Suggestions userId={userId} following={following}/>
         </div>

@@ -11,11 +11,11 @@ export default function NotFound() {
     return (
         <>
             <Header/>
-            <div className="bg-gray-50">
+            <div className="px-4">
                 <div className="mx-auto max-w-screen-lg">
                     <p className="text-center text-2xl font-semibold mb-4">Sorry, this page isn't available.</p>
-                    <p className="text-center text-md">The link you followed may be broken, or the page may have been removed.     
-                    <Link to={ROUTES.DASHBOARD} className="text-blue-800"> Go back to Instagram</Link>.</p>
+                    <p className="text-center text-md">The link you followed may be broken, or the page may have been removed.</p>  
+                    <p className="text-center text-md pt-4"><Link to={ROUTES.DASHBOARD} className="text-blue-600"> Go back to Instagram</Link></p>
                 </div>
             </div>
         </>

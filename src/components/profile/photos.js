@@ -2,8 +2,8 @@ import Skeleton from 'react-loading-skeleton'
 
 export default function Photos({photos}) {
     return ( 
-        <div className="h-16 border-t border-gray-500 mt-12">
-            <div className="grid grid-cols-3 gap-8 mb-12 py-8 bg-gray-100">
+        <div className="h-16 border-t border-gray-500 mt-8">
+            <div className="grid sm:grid-cols-3 gap-8 mb-12 py-8 bg-gray-100">
             {!photos ? (
                 <>
                     {[...new Array(9)].map((_, index) => (

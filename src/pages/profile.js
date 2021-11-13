@@ -31,7 +31,7 @@ export default function Profile() {
         userExists ? (
             <div>
                 <Header />
-                <div className="mx-auto max-w-screen-lg">
+                <div className="mx-auto max-w-screen sm:max-w-screen-lg px-2">
                     <UserProfile user={user} />
                 </div>
             </div>

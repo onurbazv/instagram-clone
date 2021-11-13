@@ -28,7 +28,8 @@ export default function App() {
                         <ProtectedRoute 
                             user={user}
                             redirectPath={ROUTES.LOGIN}
-                            path={ROUTES.DASHBOARD}>
+                            path={ROUTES.DASHBOARD}
+                            exact>
                             <Dashboard />
                         </ProtectedRoute>
                         <Route component={NotFound}/>

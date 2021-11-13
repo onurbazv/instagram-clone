@@ -11,8 +11,8 @@ const User = ({ username, fullName, avatar }) => {
             {(!username || !fullName) ? (
                 <Skeleton height={61}/>
             ) : (
-                <Link to={`/p/${username}`} className="grid grid-cols-4 gap-4 mb-4 items-center">
-                    <div className="col-span-1 flex items-center justify-between w-max">
+                <Link to={`/p/${username}`} className="grid grid-cols-2 grid-cols-4 gap-4 mb-4 items-center">
+                    <div className="flex items-center justify-between w-max">
                         <img 
                             className="rounded-full w-16 h-16 mr-3 object-cover"
                             src={avatar}
