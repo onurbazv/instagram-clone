@@ -37,7 +37,10 @@ export default function UserProfile({user}) {
                 profile={profile}
                 dispatch={dispatch}/>
             <Photos 
-                photos={photosCollection}/>
+                photos={photosCollection}
+                username={profile.username}
+                avatar={profile.avatar}
+                dispatch={dispatch}/>
         </>
     )
 }

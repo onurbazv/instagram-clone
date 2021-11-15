@@ -24,7 +24,7 @@ export default function Actions({docId, totalLikes, likedPhoto, handleFocus}) {
 
     return (
         <>
-            <div className="flex justify-between p-4">
+            <div className="flex justify-between py-2 items-center">
                 <div className="flex">
                     <svg
                         onClick={() => handleToggleLiked((toggleLiked) => !toggleLiked)}
@@ -71,9 +71,9 @@ export default function Actions({docId, totalLikes, likedPhoto, handleFocus}) {
                         />
                     </svg>
                 </div>
-            </div>
-            <div className="p-4 py-0">
-                <p className="font-bold">{likes === 1 ? `1 like` : `${likes} likes`}</p>
+                <div>
+                    <p className="font-bold">{likes === 1 ? `1 like` : `${likes} likes`}</p>
+                </div>
             </div>
         </>
     )

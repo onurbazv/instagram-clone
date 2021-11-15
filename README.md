@@ -14,7 +14,7 @@ As aulas finalizaram com o projeto faltando alguns requisitos funcionais para se
 -- [ ] Posts / Static files
 - [ ] Habilidade de criar novos posts
 - [x] Habilidade de alterar avatar
-- [ ] Habilidade de abrir um post especifíco em um Modal/Popup
+- [X] Habilidade de abrir um post especifíco em um Modal/Popup
 - [X] Habilidade de ver listas de followers / followings em um Modal/Popup
 - [X] Responsividade da UI
 
@@ -28,4 +28,4 @@ Estes são os bugs que foram encontrados e ainda precisam ser corrigidos
 - [x] O perfil do usuário não atualiza a imagem após o upload, só depois de um reload na página que o usuário consegue ver a mudança. Descobrir como fazer a mudança ocorrer sem necessidade de F5.
 - [ ] O header não atualiza a imagem do usuário após alteração de avatar.
 - [x] Background meio bugado em alguns lugares, descobrir o que está causando isso no CSS
-- [ ] Ao criar uma nova conta não existe nada no following[], mas quando o usuário clica para seguir alguem a pagina continua sem posts para exibir.
+- [ ] Ao criar uma nova conta não existe nada no following[], mas quando o usuário clica para seguir alguem a pagina continua sem posts para exibir.npm start

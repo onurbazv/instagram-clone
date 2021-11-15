@@ -26,7 +26,7 @@ export default function AddComment( { docId, comments, setComments, commentInput
     }
 
     return (
-        <div className="border-t border-gray-200">
+        <div className="border-t border-gray-200 pt-2">
             <form 
                 className="flex w-full justify-between border-gray pr-4"
                 onSubmit={(event) => {
