@@ -38,11 +38,12 @@ export default function Post({ content }) {
                 open={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 title="">
-                    <div className="grid grid-cols-7 max-w-screen-lg">
+                    <div className="sm:grid sm:grid-cols-7 sm:max-w-screen-lg">
                         <div className="col-span-4">
                             <img className="w-full" src={content.imageSrc} alt={content.caption}/>
                         </div>
                         <div className="col-span-3 p-4">
+                            
                             <Header username={content.username} avatar={content.avatar}/>
                             <Actions 
                                     docId={content.docId}

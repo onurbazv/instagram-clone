@@ -21,7 +21,7 @@ export default function PostModal({isModalOpen, closeModal, content}) {
             open={isModalOpen}
             onClose={closeModal}
             title="">
-                <div className="grid grid-cols-7 max-w-screen-lg">
+                <div className="sm:grid sm:grid-cols-7 sm:max-w-screen-lg">
                     <div className="col-span-4">
                         <img className="w-full" src={content.imageSrc} alt={content.caption}/>
                     </div>
