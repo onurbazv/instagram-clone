@@ -14,8 +14,6 @@ export default function PostModal({isModalOpen, closeModal, content}) {
     }
 
 
-    console.log(content)
-
     return (
         content !== null && <Modal
             open={isModalOpen}

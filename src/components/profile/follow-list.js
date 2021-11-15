@@ -4,7 +4,6 @@ import FollowProfile from './follow-profile'
 
 function FollowList({list, userId, followingList, closeModal}) {
     const [profiles, setProfiles] = useState(null)
-    console.log(profiles)
     useEffect(() => {
         async function getProfiles() {
             const response = await getProfileList(list)

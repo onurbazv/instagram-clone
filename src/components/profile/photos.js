@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import PostModal from '../post/post-modal'
 

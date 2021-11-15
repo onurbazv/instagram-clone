@@ -43,7 +43,6 @@ export default function Post({ content }) {
                             <img className="w-full" src={content.imageSrc} alt={content.caption}/>
                         </div>
                         <div className="col-span-3 p-4">
-                            
                             <Header username={content.username} avatar={content.avatar}/>
                             <Actions 
                                     docId={content.docId}

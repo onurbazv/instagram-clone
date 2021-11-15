@@ -136,7 +136,7 @@ export const isUserFollowingProfile = async (activeUsername, profileUserId) => {
     return !!response.fullName
 }
 
-export const uploadFile = async (file, path, recalculateProgress, onSuccess) => {
+export const uploadFile = async (file, path, recalculateProgress, onSuccess, id) => {
 
     
     const uploadTask = storageRef.child(path).put(file)
@@ -147,8 +147,7 @@ export const uploadFile = async (file, path, recalculateProgress, onSuccess) => 
     }, async () => {
         const url = await getFileUrl(path)
         if (path !== undefined && path !== null) {
-            console.log(url)
-            onSuccess(url)
+            onSuccess(url, id)
         }
     })
 }
@@ -169,4 +168,20 @@ export const updateUserAvatar = async (docId, url) => {
         .update({
             avatar: url
         })
+}
+
+export const createNewPost = async (caption, postId, userId, imageSrc) => {
+    console.log(`postId : ${postId}`)
+    console.log(`userId : ${userId}`)
+    console.log(`imageSrc : ${imageSrc}`)
+    console.log(`caption : ${caption}`)
+    return await firebase.firestore().collection("photos").add({
+        dateCreated: Date.now(),
+        comments: [],
+        likes: [],
+        imageSrc: imageSrc,
+        photoId: postId,
+        userId: userId,
+        caption: caption
+    })
 }

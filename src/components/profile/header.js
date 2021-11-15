@@ -35,7 +35,7 @@ export default function Header({
         updateFollowedUserFollowers(docId, user.userId, isFollowingProfile)
     }
 
-    const handleUploadAvatar = async (url) => {
+    const handleUploadAvatar = async (url, id) => {
         updateUserAvatar(user.docId, url)
         dispatch({profile: {
             docId,

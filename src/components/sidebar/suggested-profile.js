@@ -12,9 +12,7 @@ export default function SuggestedProfile({ userDocId, username, profileId, userI
     async function handleFollowUser() {
         setFollowed(true);
         const [{ docId }] = await getUserByUserId(userId);
-        console.log(`updateUserFollowing(${docId}, ${profileId}, false)`)
         await updateUserFollowing(docId, profileId, false);
-        console.log(`updateFollowedUserFollowers(${userDocId}, ${userId}, false)`)
         await updateFollowedUserFollowers(userDocId, userId, false);
     }
 

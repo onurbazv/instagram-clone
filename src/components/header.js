@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 
 import * as ROUTES from '../constants/routes'
@@ -6,11 +6,14 @@ import * as ICONS from '../constants/icons'
 import FirebaseContext from '../context/firebase'
 import UserContext from "../context/user"
 import useUser from "../hooks/use-user"
+import Modal from "./modal"
+import NewPostForm from "./new-post-form"
 
 export default function Header() {
     const { firebase } = useContext(FirebaseContext)
     const { user } = useContext(UserContext)
     const { user: profile } = useUser()
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
 
     return (
@@ -31,6 +34,17 @@ export default function Header() {
                                 <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">
                                     {ICONS.DASHBOARD}
                                 </Link>
+                                <button 
+                                    type="button"
+                                    title="New post"
+                                    onClick={() => {
+                                        setIsModalOpen(true)
+                                    }}
+                                    onKeyDown={e => {
+                                        e.key === "Enter" && console.log('create new post')
+                                    }}>
+                                    {ICONS.NEW_POST}
+                                </button>
                                 <button
                                     type="button"
                                     title="Sign Out"
@@ -48,14 +62,19 @@ export default function Header() {
                                             alt={`${user.displayName} avatar`}/>
                                     </Link>
                                 </div>
+                                <Modal
+                                    open={isModalOpen}
+                                    onClose={() => setIsModalOpen(false)}
+                                    title="New Post">
+                                        <NewPostForm userId={user.uid} username={profile.username}/>
+                                </Modal>
                             </>
                         ) : (
                             <>
                                 <Link to={ROUTES.LOGIN} aria-label="Login">
                                     <button
                                         type="button"
-                                        className="bg-blue-500 text-white text-sm font-bold w-20 h-8 rounded"
-                                        >
+                                        className="bg-blue-500 text-white text-sm font-bold w-20 h-8 rounded">
                                         Login
                                     </button>
                                 </Link>
