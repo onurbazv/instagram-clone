@@ -22,7 +22,7 @@ const Suggestions = ({ userId, following }) => {
     ) : profiles.length > 0 ? (
         <div className="flex flex-col">
             <div className="flex justify-between">
-                <p className="font-bold text-gray-900 text-sm mb-6">Suggestions for you</p>
+                <p className="font-bold text-gray-900 text-sm mb-4">Suggestions for you</p>
                 <div className="sm:hidden" onClick={() => setIsHidden(prev => !prev)}>
                     <i className={`far ${isHidden ? "fa-eye" : "fa-eye-slash"}`}></i>
                 </div>

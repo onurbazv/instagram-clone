@@ -38,7 +38,7 @@ export default function Modal({open, onClose, title, children}) {
                         </div>}
                         <div className={`relative flex-auto ${title !== "" && "p-4"}`}>
                             {title === "" && (
-                                <button className="absolute text-2xl top-4 right-4 hidden sm:block"
+                                <button className="absolute text-2xl right-4 top-4 hidden sm:block"
                                         onClick={() => onClose()}>
                                     <i class="far fa-times-circle fa-1x"></i>
                                 </button>)}

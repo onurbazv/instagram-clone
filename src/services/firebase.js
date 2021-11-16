@@ -171,10 +171,6 @@ export const updateUserAvatar = async (docId, url) => {
 }
 
 export const createNewPost = async (caption, postId, userId, imageSrc) => {
-    console.log(`postId : ${postId}`)
-    console.log(`userId : ${userId}`)
-    console.log(`imageSrc : ${imageSrc}`)
-    console.log(`caption : ${caption}`)
     return await firebase.firestore().collection("photos").add({
         dateCreated: Date.now(),
         comments: [],

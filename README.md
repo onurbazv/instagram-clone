@@ -11,8 +11,10 @@ As aulas finalizaram com o projeto faltando alguns requisitos funcionais para se
 - [x] Avatar padrão para novos usuários
 - Migração local para firebase storage
 -- [x] Avatars 
--- [ ] Posts / Static files
-- [ ] Habilidade de criar novos posts
+-- [x] Posts
+-- [ ] Static files
+- [X] Habilidade de criar novos posts
+- [ ] Habilidade de deletar posts
 - [x] Habilidade de alterar avatar
 - [X] Habilidade de abrir um post especifíco em um Modal/Popup
 - [X] Habilidade de ver listas de followers / followings em um Modal/Popup

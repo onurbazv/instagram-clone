@@ -14,10 +14,6 @@ export default function NewPostForm({userId, username}) {
         setPostId(id)
     }
 
-    
-
-    console.log(history.location)
-
     const handleSubmit = async () => {
         if (postId !== undefined && caption !== "" && postSrc !== undefined) {
             await createNewPost(caption, postId, userId, postSrc)

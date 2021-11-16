@@ -5,7 +5,7 @@ import Post from "./post";
 
 export default function Timeline() {
     const { photos } = useFollowedUsersPhotos()
-
+    
     return (
         <div className="container col-span-2 sm:max-w-lg mx-auto">
             {!photos ? (
