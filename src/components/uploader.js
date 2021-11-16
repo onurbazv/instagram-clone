@@ -13,9 +13,8 @@ export default function Uploader({basePath, onSuccess}) {
     const onChangeHandler = async event => {
         const selectedFile = event.target.files[0]
         if (SETTINGS.ALLOWED_FILETYPES.includes(selectedFile.type) && SETTINGS.MAX_FILESIZE >= selectedFile.size) {
-            const ext = `.${selectedFile.name.split('.')[selectedFile.name.split('.').length - 1]}`
-            const id = randomString(32)
-            const file = new File([selectedFile], `${id}${ext}`, {type: selectedFile.type})
+            const id = `${randomString(32)}.${selectedFile.name.split('.')[selectedFile.name.split('.').length - 1]}`
+            const file = new File([selectedFile], id, {type: selectedFile.type})
             await uploadFile(file, `${basePath}${file.name}`, recalculateProgress, onSuccess, id)
         } else {
             console.log("Make sure you're uploading an image with size < 1mb.")

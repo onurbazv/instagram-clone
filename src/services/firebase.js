@@ -181,3 +181,8 @@ export const createNewPost = async (caption, postId, userId, imageSrc) => {
         caption: caption
     })
 }
+
+export const deletePost = async (docId, postId) => {
+    await firebase.firestore().collection("photos").doc(docId).delete()
+    await storageRef.child(`posts/${postId}`).delete()
+}

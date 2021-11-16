@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import PostModal from '../post/post-modal'
+import * as ICONS from '../../constants/icons'
+import UserContext from '../../context/user'
+import { deletePost } from '../../services/firebase'
 
 export default function Photos({photos, username, avatar, dispatch}) {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [content, setContent] = useState(null)
+    const { user } = useContext(UserContext)
+
+    const isUserProfile = user.displayName === username
 
     return ( 
         <div className="h-16 border-t border-gray-500 mt-8">
@@ -27,6 +33,18 @@ export default function Photos({photos, username, avatar, dispatch}) {
                                 <div className="mr-10">{photo.comments.length} comments</div>
                                 <div>{photo.likes.length} {photo.likes.length === 1 ? "like" : "likes"}</div>
                             </div>
+                            {isUserProfile && (
+                                <button
+                                    onClick={() => {
+                                        const hasConfirmed = window.confirm("Are you sure you want to delete this post?")
+                                        if (hasConfirmed) {
+                                            deletePost(photo.docId, photo.photoId)
+                                        }
+                                    }}
+                                    className="absolute top-2 right-2 bg-transparent text-white mix-blend-exclusion opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    {ICONS.DELETE_POST}
+                                </button>
+                            )}
                         </div>
                 ))}
                 <PostModal

@@ -14,7 +14,7 @@ As aulas finalizaram com o projeto faltando alguns requisitos funcionais para se
 -- [x] Posts
 -- [ ] Static files
 - [X] Habilidade de criar novos posts
-- [ ] Habilidade de deletar posts
+- [X] Habilidade de deletar posts
 - [x] Habilidade de alterar avatar
 - [X] Habilidade de abrir um post especifíco em um Modal/Popup
 - [X] Habilidade de ver listas de followers / followings em um Modal/Popup
@@ -31,3 +31,4 @@ Estes são os bugs que foram encontrados e ainda precisam ser corrigidos
 - [ ] O header não atualiza a imagem do usuário após alteração de avatar.
 - [x] Background meio bugado em alguns lugares, descobrir o que está causando isso no CSS
 - [ ] Ao criar uma nova conta não existe nada no following[], mas quando o usuário clica para seguir alguem a pagina continua sem posts para exibir.npm start
+- [ ] Ao excluir um post a página não atualiza, só vemos a alteração após recarregar a página
