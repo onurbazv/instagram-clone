@@ -22,9 +22,9 @@ export default function Login() {
         event.preventDefault()
         try {
             await firebase.auth().signInWithEmailAndPassword(emailAddress, password)
-            const myTimeout = setTimeout(() => {
+            const timeout = setTimeout(() => {
                 history.push(ROUTES.DASHBOARD)
-                clearTimeout(myTimeout)
+                clearTimeout(timeout)
             }, 500)
         } catch (error) {
             setEmailAddress("")

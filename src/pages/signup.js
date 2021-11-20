@@ -70,7 +70,10 @@ export default function SignUp() {
                     dateCreated: Date.now()
                     })
                 
-                history.push(ROUTES.DASHBOARD)
+                const timeout = setTimeout(() => {
+                    history.push(ROUTES.DASHBOARD)
+                    clearTimeout(timeout)
+                }, 500)
     
             } catch (error) {
                 setError(error.message)

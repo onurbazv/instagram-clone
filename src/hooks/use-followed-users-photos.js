@@ -5,7 +5,7 @@ import UserContext from '../context/user';
 export default function useFollowedUsersPhotos() {
     const [photos, setPhotos] = useState(null);
     const {
-        user: { uid: userId = '' }
+        user: { following, uid: userId = '' }
     } = useContext(UserContext);
     
     useEffect(() => {
@@ -24,7 +24,7 @@ export default function useFollowedUsersPhotos() {
          }
         
         getTimelinePhotos();
-    }, [userId]);
+    }, [userId, following]);
     
     return { photos };
 }
