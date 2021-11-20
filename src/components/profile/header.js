@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react'
-import useUser from "../../hooks/use-user"
 import UserContext from '../../context/user';
 import { updateFollowedUserFollowers, updateUserFollowing, updateUserAvatar } from '../../services/firebase';
 import Skeleton from "react-loading-skeleton"
@@ -13,19 +12,19 @@ export default function Header({
     profile  : { docId, userId, username, fullName, following, avatar, followers, emailAddress, dateCreated },
     dispatch
 }) {
-    const { user } = useUser();
-    const { user: loggedInUser } = useContext(UserContext)
+    const { user } = useContext(UserContext)
     const [isFollowingProfile, setIsFollowingProfile] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [modal, setModal] = useState({title: "", intent: ""})
-    const isUserProfile = user.username === username
-    const activeBtnFollowState = user && user.username && !isUserProfile && loggedInUser !== null;
+    const isUserProfile = user !== null && user.username === username
+    const activeBtnFollowState = user && user.username && !isUserProfile && user !== null;
 
     useEffect(() => {
+        if (user === null) return
         if (user.following !== undefined) {
             setIsFollowingProfile(user.following.includes(userId))
         }
-    }, [user.following, userId])
+    }, [user, userId])
 
 
     const handleToggleFollow = async () => {

@@ -5,14 +5,12 @@ import * as ROUTES from '../constants/routes'
 import * as ICONS from '../constants/icons'
 import FirebaseContext from '../context/firebase'
 import UserContext from "../context/user"
-import useUser from "../hooks/use-user"
 import Modal from "./modal"
 import NewPostForm from "./new-post-form"
 
 export default function Header() {
     const { firebase } = useContext(FirebaseContext)
     const { user } = useContext(UserContext)
-    const { user: profile } = useUser()
     const [isModalOpen, setIsModalOpen] = useState(false)
 
 
@@ -58,7 +56,7 @@ export default function Header() {
                                     <Link to={`/p/${user.displayName}`}>
                                         <img 
                                             className="rounded-full w-8 h-8 flex object-cover"
-                                            src={profile.avatar}
+                                            src={user.avatar}
                                             alt={`${user.displayName} avatar`}/>
                                     </Link>
                                 </div>
@@ -66,7 +64,7 @@ export default function Header() {
                                     open={isModalOpen}
                                     onClose={() => setIsModalOpen(false)}
                                     title="New Post">
-                                        <NewPostForm userId={user.uid} username={profile.username}/>
+                                        <NewPostForm userId={user.uid} username={user.username}/>
                                 </Modal>
                             </>
                         ) : (

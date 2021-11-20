@@ -10,7 +10,7 @@ export default function Photos({photos, username, avatar, dispatch}) {
     const [content, setContent] = useState(null)
     const { user } = useContext(UserContext)
 
-    const isUserProfile = user.displayName === username
+    const isUserProfile = user !== null && user.displayName === username
 
     return ( 
         <div className="h-16 border-t border-gray-500 mt-8">
